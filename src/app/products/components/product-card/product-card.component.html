@@ -1,0 +1,33 @@
+<div class="card animate-fadeIn bg-base-100 shadow-sm">
+  <figure>
+    <img [src]="product().images | productImage" [alt]="product().title" />
+  </figure>
+  <div class="card-body">
+    <h2
+      class="card-title font-montserrat text-accent text-xl hover:underline cursor-pointer"
+      [routerLink]="['/product', product().slug]"
+    >
+      {{ product().title }}
+      <!-- <div class="badge badge-secondary">NEW</div> -->
+    </h2>
+    <p>{{ product().description | slice : 0 : 70 }}...</p>
+    <div class="card-actions justify-between mt-2">
+      <!-- tags -->
+      @for (tag of product().tags; track $index) {
+      <div class="badge badge-soft badge-ghost text-xs">{{ tag }}</div>
+      }
+    </div>
+    <div class="card-actions justify-end">
+      <!-- sizes -->
+      @for (size of product().sizes; track $index) {
+      <div class="badge badge-soft badge-secondary text-xs">{{ size }}</div>
+      }
+    </div>
+    <div class="card-actions justify-end">
+      <!-- ver producto -->
+      <a [routerLink]="['/product', product().slug]" class="link link-accent"
+        >Ver Producto</a
+      >
+    </div>
+  </div>
+</div>
